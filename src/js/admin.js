@@ -24,7 +24,23 @@ async function fetchUsers() {
 }
 
 async function requestDeleteUser(username) {
-    console.log(`Försöker ta bort användare: ${username}`);
+    try {
+        const res = await fetch(`http://localhost:5000/api/users/${username}`, {
+            method: "DELETE",
+            headers: {
+                "authorization": `Bearer ${localStorage.getItem("admin_token")}`
+            }
+        });
+
+        if (!res.ok) {
+            console.log("Misslyckades att ta bort användare");
+        } else {
+            const data = await res.json();
+            fetchUsers();
+        }
+    } catch (error) {
+        console.error(`Felmeddelande ${error}`);
+    }
 }
 
 function writeUsers(users) {
