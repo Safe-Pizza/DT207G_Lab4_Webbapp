@@ -29,6 +29,7 @@ function toggleMenu() {
 
 function toggleForm() {
   const registerForm = document.querySelector("#form-register");
+  document.querySelector("#errors-reg").innerHTML = "";
   registerForm.classList.toggle("hidden");
 }
 
