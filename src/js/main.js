@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //Eventlyssnare för hamburgermeny
   document.querySelector("#hamburger-menu").addEventListener("click", toggleMenu);
+  document.querySelector(".link-register").addEventListener("click", toggleForm);
 });
 
 //togglefunktion för hamburgermeny
@@ -18,4 +19,9 @@ function toggleMenu() {
     mainNavEl.style.display = "block";
     hamMenuEl.classList.add("change");
   }
+}
+
+function toggleForm() {
+  const registerForm = document.querySelector("#form-register");
+  registerForm.classList.toggle("hidden");
 }
