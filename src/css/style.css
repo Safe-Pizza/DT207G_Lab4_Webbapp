@@ -140,6 +140,10 @@ main button:active {
   color: red;
 }
 
+#message-register {
+  color: darkgreen;
+}
+
 .hidden {
   display: none;
 }

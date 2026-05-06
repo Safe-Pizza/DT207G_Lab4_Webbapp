@@ -50,7 +50,7 @@ function createUser() {
             errorsEl.innerHTML += error;
         })
     } else {
-        console.log("Skapar användare...");
+        requestCreateUser(username, password);
     }
 }
 
@@ -77,4 +77,30 @@ async function requestLogin(username, password) {
     } catch (error) {
         console.error(`Något gick fel: ${error}`);
     };
+}
+
+async function requestCreateUser(username, password) {
+    try {
+        const res = await fetch("http://localhost:5000/api/register", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password
+            })
+        });
+        const data = await res.json();
+        if (!res.ok) {
+            console.log("Misslyckades att skapa användare");
+        } else {
+            document.querySelector("#form-register").classList.add("hidden");
+            const messageEl = document.querySelector("#message-register");
+            messageEl.innerHTML = "Användare skapad, du kan nu logga in!";
+            window.scrollTo(0, 0);
+        }
+    } catch (error) {
+        console.error(`Något gick fel: ${error}`);
+    }
 }
