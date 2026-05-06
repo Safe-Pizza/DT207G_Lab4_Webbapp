@@ -67,7 +67,7 @@ main {
   display: grid;
   grid-template-columns: 1fr;
   justify-items: center;
-  background-color: white;
+  background-color: whitesmoke;
   color: black;
   padding: 1em;
   padding-bottom: 4em;
@@ -78,6 +78,7 @@ main h2 {
 }
 
 article {
+  background-color: white;
   margin-bottom: 2em;
   border: 1px solid darkgrey;
   padding: 1em;
@@ -102,6 +103,11 @@ footer {
 .form {
   max-width: 500px;
   width: 100%;
+  background-color: white;
+  border: 1px solid darkgrey;
+  padding: 1em;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 input[type="text"] {
