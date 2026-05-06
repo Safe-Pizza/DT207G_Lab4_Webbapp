@@ -77,6 +77,14 @@ main h2 {
   text-align: center;
 }
 
+article {
+  margin-bottom: 2em;
+  border: 1px solid darkgrey;
+  padding: 1em;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
 .separator {
   width: 100%;
   height: 1px;
