@@ -136,7 +136,7 @@ main button:active {
   background-color: rgb(41, 77, 107);
 }
 
-#errors {
+.error {
   color: red;
 }
 
