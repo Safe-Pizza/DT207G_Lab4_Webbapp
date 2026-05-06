@@ -2,9 +2,15 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
+  changeNav();
+
   //Eventlyssnare för hamburgermeny
   document.querySelector("#hamburger-menu").addEventListener("click", toggleMenu);
-  document.querySelector(".link-register").addEventListener("click", toggleForm);
+
+  const linkRegisterEl = document.querySelector(".link-register");
+  if (linkRegisterEl) {
+    linkRegisterEl.addEventListener("click", toggleForm);
+  }
 });
 
 //togglefunktion för hamburgermeny
@@ -24,4 +30,32 @@ function toggleMenu() {
 function toggleForm() {
   const registerForm = document.querySelector("#form-register");
   registerForm.classList.toggle("hidden");
+}
+
+function changeNav() {
+  const navEl = document.querySelector("#main-nav");
+  if (localStorage.getItem("admin_token")) {
+    navEl.innerHTML = `        
+    <ul>
+    <li><a href="./index.html">Startsida</a></li>
+    <li><button id="button-logout">Logga ut</button></li>
+    <li><a href="./admin">Admin</a></li>
+    </ul>
+    `
+  } else {
+    navEl.innerHTML = `
+    <ul>
+    <li><a href="./index.html">Startsida</a></li>
+    <li><a href="./login">Logga in</a></li>
+    </ul>`
+  }
+
+  const logoutButton = document.querySelector("#button-logout");
+  if (logoutButton) {
+    logoutButton.addEventListener("click", () => {
+      localStorage.removeItem("admin_token");
+      changeNav();
+      window.location.href = "login.html";
+    })
+  }
 }

@@ -24,6 +24,31 @@ function loginUser() {
             errorsEl.innerHTML += error;
         })
     } else {
-        console.log("Inloggning lyckades");
+        requestLogin(username, password);
     }
+}
+
+async function requestLogin(username, password) {
+    try {
+        const res = await fetch("http://localhost:5000/api/login", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password
+            })
+        })
+
+        if (!res.ok) {
+            throw new Error("Misslyckades att logga in");
+        } else {
+            const data = await res.json();
+            localStorage.setItem("admin_token", data.token);
+            window.location.href = "admin.html";
+        }
+    } catch (error) {
+        console.error(`Något gick fel: ${error}`);
+    };
 }
