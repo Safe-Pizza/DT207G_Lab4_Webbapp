@@ -1,8 +1,10 @@
 "use strict";
 
+//eventlyssnare för login och register knappar
 document.querySelector("#submit-button").addEventListener("click", loginUser);
 document.querySelector("#register-button").addEventListener("click", createUser);
 
+//funktion för login, validera input och skicka till funktion som anropar webbtjänst
 function loginUser() {
     const username = document.querySelector("#username").value;
     const password = document.querySelector("#password").value;
@@ -12,6 +14,7 @@ function loginUser() {
 
     const errors = [];
 
+    //kontrollera att både användarnamn och lösenord är ifyllt
     if (!username || !password) {
         errors.push("Du måste fylla i både användarnamn och lösenord.");
     }
@@ -26,6 +29,7 @@ function loginUser() {
     }
 }
 
+//funktion för att skapa användare, validerar input och skicka till funktion som anropar webbtjänst
 function createUser() {
     const username = document.querySelector("#reg-username").value;
     const password = document.querySelector("#reg-password").value;
@@ -36,10 +40,12 @@ function createUser() {
 
     const errors = [];
 
+    //kontrollera att både användarnamn, lösenord och bekräftelse av lösenord är ifyllt
     if (!username || !password || !confirmPassword) {
         errors.push("Du måste fylla i både användarnamn och lösenord.");
     }
 
+    //kontrollera att lösenord och bekräftelse av lösenord matchar
     if (password !== confirmPassword) {
         errors.push("Lösenorden matchar inte, kontrollera att du skrivit rätt och försök igen");
     }
@@ -54,6 +60,7 @@ function createUser() {
     }
 }
 
+//funktion för loginförsök till webbtjänst, sparar token vid lyckat login, skickar användare till admin.html
 async function requestLogin(username, password) {
     try {
         const res = await fetch("http://localhost:5000/api/login", {
@@ -79,6 +86,7 @@ async function requestLogin(username, password) {
     };
 }
 
+//funktion för att skapa användare i webbtjänst
 async function requestCreateUser(username, password) {
     try {
         const res = await fetch("http://localhost:5000/api/register", {
@@ -94,7 +102,7 @@ async function requestCreateUser(username, password) {
         const data = await res.json();
         if (!res.ok) {
             console.log("Misslyckades att skapa användare");
-        } else {
+        } else { //om användare skapats, göm formulär och visa meddelande
             document.querySelector("#form-register").classList.add("hidden");
             const messageEl = document.querySelector("#message-register");
             messageEl.innerHTML = "Användare skapad, du kan nu logga in!";

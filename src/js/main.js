@@ -27,12 +27,14 @@ function toggleMenu() {
   }
 }
 
+//togglefunktion för registerformulär
 function toggleForm() {
   const registerForm = document.querySelector("#form-register");
   document.querySelector("#errors-reg").innerHTML = "";
   registerForm.classList.toggle("hidden");
 }
 
+//funktion ändra navigering beroende på inloggad eller ej
 function changeNav() {
   const navEl = document.querySelector("#main-nav");
   if (localStorage.getItem("admin_token")) {
@@ -51,6 +53,7 @@ function changeNav() {
     </ul>`
   }
 
+  //kontroll och eventlyssnare för logga ut-knapp
   const logoutButton = document.querySelector("#button-logout");
   if (logoutButton) {
     logoutButton.addEventListener("click", () => {

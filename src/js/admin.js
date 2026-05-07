@@ -1,9 +1,12 @@
 "use strict";
 
+//Kontrollera token i localStorage och hämta användare om token finns
 if (localStorage.getItem("admin_token")) {
     fetchUsers();
 }
 
+
+//funktion för att hämta användare från webbtjänst
 async function fetchUsers() {
     try {
         const res = await fetch("http://localhost:5000/api/users", {
@@ -23,6 +26,7 @@ async function fetchUsers() {
     }
 }
 
+//funktion för att ta bort användare från webbtjänst
 async function requestDeleteUser(username) {
     try {
         const res = await fetch(`http://localhost:5000/api/users/${username}`, {
@@ -43,6 +47,7 @@ async function requestDeleteUser(username) {
     }
 }
 
+//skriv ut användare till DOM
 function writeUsers(users) {
     let resultEl = document.getElementById("api-response");
 
