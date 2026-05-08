@@ -37,6 +37,10 @@ nav li {
   margin-right: -5px;
 }
 
+nav li:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
 nav a {
   display: block;
   text-decoration: none;
