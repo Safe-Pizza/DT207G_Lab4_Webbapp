@@ -2,7 +2,7 @@
 Detta är en laboration i _Webbutveckingsprogrammet_ på Mittuniveristetet.
 
 ## Redovsning
-[Webbplats]()
+[Webbplats](https://safe-pizza.github.io/DT207G_Lab4_Webbapp/)
 
 ## Syfte
 Syftet med denna laboration använda Fetch API för att konsumera webbtjänsten för lagring och inloggning av användare skapad i uppgift 1 för Laboration 4.
