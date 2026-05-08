@@ -31,9 +31,9 @@ function loginUser() {
 
 //funktion för att skapa användare, validerar input och skicka till funktion som anropar webbtjänst
 function createUser() {
-    const username = document.querySelector("#reg-username").value;
-    const password = document.querySelector("#reg-password").value;
-    const confirmPassword = document.querySelector("#reg-confirm-password").value;
+    let username = document.querySelector("#reg-username");
+    let password = document.querySelector("#reg-password");
+    let confirmPassword = document.querySelector("#reg-confirm-password");
     const errorsEl = document.querySelector("#errors-reg");
 
     errorsEl.innerHTML = "";
@@ -41,12 +41,12 @@ function createUser() {
     const errors = [];
 
     //kontrollera att både användarnamn, lösenord och bekräftelse av lösenord är ifyllt
-    if (!username || !password || !confirmPassword) {
+    if (!username.value || !password.value || !confirmPassword.value) {
         errors.push(`<li>Du måste fylla i både användarnamn och lösenord</li>`);
     }
 
     //kontrollera att lösenord och bekräftelse av lösenord matchar
-    if (password !== confirmPassword) {
+    if (password.value !== confirmPassword.value) {
         errors.push(`<li>Lösenorden matchar inte, kontrollera att du skrivit rätt och försök igen</li>`);
     }
 
@@ -56,7 +56,10 @@ function createUser() {
             errorsEl.innerHTML += error;
         })
     } else {
-        requestCreateUser(username, password);
+        requestCreateUser(username.value, password.value);
+        username.value = "";
+        password.value = "";
+        confirmPassword.value = "";
     }
 }
 
