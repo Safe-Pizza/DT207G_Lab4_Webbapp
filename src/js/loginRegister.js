@@ -16,7 +16,7 @@ function loginUser() {
 
     //kontrollera att både användarnamn och lösenord är ifyllt
     if (!username || !password) {
-        errors.push("Du måste fylla i både användarnamn och lösenord.");
+        errors.push(`<li>Du måste fylla i både användarnamn och lösenord</li>`);
     }
 
     //Skriv ut eventuella felmeddelanden
@@ -42,12 +42,12 @@ function createUser() {
 
     //kontrollera att både användarnamn, lösenord och bekräftelse av lösenord är ifyllt
     if (!username || !password || !confirmPassword) {
-        errors.push("Du måste fylla i både användarnamn och lösenord.");
+        errors.push(`<li>Du måste fylla i både användarnamn och lösenord</li>`);
     }
 
     //kontrollera att lösenord och bekräftelse av lösenord matchar
     if (password !== confirmPassword) {
-        errors.push("Lösenorden matchar inte, kontrollera att du skrivit rätt och försök igen");
+        errors.push(`<li>Lösenorden matchar inte, kontrollera att du skrivit rätt och försök igen</li>`);
     }
 
     //Skriv ut eventuella felmeddelanden
@@ -63,7 +63,7 @@ function createUser() {
 //funktion för loginförsök till webbtjänst, sparar token vid lyckat login, skickar användare till admin.html
 async function requestLogin(username, password) {
     try {
-        const res = await fetch("http://localhost:5000/api/login", {
+        const res = await fetch("https://dt207g-laboration4.onrender.com/api/login", {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -89,7 +89,7 @@ async function requestLogin(username, password) {
 //funktion för att skapa användare i webbtjänst
 async function requestCreateUser(username, password) {
     try {
-        const res = await fetch("http://localhost:5000/api/register", {
+        const res = await fetch("https://dt207g-laboration4.onrender.com/api/register", {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -105,7 +105,7 @@ async function requestCreateUser(username, password) {
         } else { //om användare skapats, göm formulär och visa meddelande
             document.querySelector("#form-register").classList.add("hidden");
             const messageEl = document.querySelector("#message-register");
-            messageEl.innerHTML = "Användare skapad, du kan nu logga in!";
+            messageEl.innerHTML = `<strong>Användare skapad,<br> du kan nu logga in!</strong>`;
             window.scrollTo(0, 0);
         }
     } catch (error) {

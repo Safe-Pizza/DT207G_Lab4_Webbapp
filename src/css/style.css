@@ -135,7 +135,7 @@ input[type="password"] {
 }
 
 main button {
-  margin-right: 1em;
+  margin-bottom: 2em;
   background-color: steelblue;
   padding: 0.6em;
   min-width: 100%;
@@ -156,6 +156,8 @@ main button:active {
 
 #message-register {
   color: darkgreen;
+  text-align: center;
+  font-size: 1.2em;
 }
 
 .hidden {

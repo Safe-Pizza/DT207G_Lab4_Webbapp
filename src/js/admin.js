@@ -9,7 +9,7 @@ if (localStorage.getItem("admin_token")) {
 //funktion för att hämta användare från webbtjänst
 async function fetchUsers() {
     try {
-        const res = await fetch("http://localhost:5000/api/users", {
+        const res = await fetch("https://dt207g-laboration4.onrender.com/api/users", {
             method: "GET",
             headers: {
                 "authorization": `Bearer ${localStorage.getItem("admin_token")}`
@@ -29,7 +29,7 @@ async function fetchUsers() {
 //funktion för att ta bort användare från webbtjänst
 async function requestDeleteUser(username) {
     try {
-        const res = await fetch(`http://localhost:5000/api/users/${username}`, {
+        const res = await fetch(`https://dt207g-laboration4.onrender.com/api/users/${username}`, {
             method: "DELETE",
             headers: {
                 "authorization": `Bearer ${localStorage.getItem("admin_token")}`
